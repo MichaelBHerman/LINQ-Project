@@ -27,10 +27,10 @@ namespace DatabaseFirstLINQ
             //ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
-            ProblemThirteen();
+            //ProblemThirteen();
             //ProblemFourteen();
             //ProblemFifteen();
-            //ProblemSixteen();
+            ProblemSixteen();
             //ProblemSeventeen();
             //ProblemEighteen();
             //ProblemNineteen();
@@ -199,8 +199,8 @@ namespace DatabaseFirstLINQ
 
         private void ProblemThirteen()
         {
-            // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
-            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
+            //Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
+           var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
             var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
             UserRole newUserRole = new UserRole()
             {
@@ -240,7 +240,10 @@ namespace DatabaseFirstLINQ
         private void ProblemSixteen()
         {
             // Update the price of the product you created to something different using LINQ.
-
+            var productPrice = _context.Products.Where(p => p.Price == 599).SingleOrDefault();
+            productPrice.Price = 799;
+            _context.Products.Update(productPrice);
+            _context.SaveChanges();
         }
 
         private void ProblemSeventeen()
